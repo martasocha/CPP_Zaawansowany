@@ -98,60 +98,50 @@ void PositiveNumber::substract(int value)
 PositiveNumber& PositiveNumber::operator+(const PositiveNumber& second)
 {
     //add(second.getValue());
-    PositiveNumber result;
-    result.add(second.getValue());
-    return result;
+    add(second.getValue());
+    return *this;
 }
 
 PositiveNumber& PositiveNumber::operator-(const PositiveNumber& second)
 {
-    PositiveNumber result;
-    result.substract(second.getValue());
-    //this->substract(second.getValue());
-    return result;
+    //PositiveNumber result;
+    //result.substract(second.getValue());
+    this->substract(second.getValue());
+    return *this;
 }
 
 PositiveNumber& PositiveNumber::operator+(double number)
 {
-    PositiveNumber result;
-    result.add(number);
-    return result;
-    //add(number);
+    add(number);
+    return *this;
 }
 
 PositiveNumber& PositiveNumber::operator-(double number)
 {
-    PositiveNumber result;
-    result.substract(number);
-    return result;
+    substract(number);
+    return *this;
 }
 
 PositiveNumber& PositiveNumber::operator+(float number)
 {
-    PositiveNumber result;
-    result.add(number);
-    return result;
-    //add(number);
+    add(number);
+    return *this;
 }
 
 PositiveNumber& PositiveNumber::operator-(float number)
 {
-    PositiveNumber result;
-    result.substract(number);
-    return result;
+    substract(number);
+    return *this;
 }
 
 PositiveNumber& PositiveNumber::operator+(int number)
 {
-    PositiveNumber result;
-    result.add(number);
-    return result;
-    //add(number);
+    add(number);
+    return *this;
 }
 
 PositiveNumber& PositiveNumber::operator-(int number)
 {
-    PositiveNumber result;
-    result.substract(number);
-    return result;
+    substract(number);
+    return *this;
 }
