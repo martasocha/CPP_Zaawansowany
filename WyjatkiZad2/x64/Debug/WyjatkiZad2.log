@@ -1,2 +1,8 @@
 ﻿  main.cpp
+  PositiveNumber.cpp
+  Generating Code...
+C:\Users\mkandyba.MPD1\source\repos\CPP_Zaawansowany\WyjatkiZad2\PositiveNumber.cpp(184): warning C4172: returning address of local variable or temporary: tmp
+C:\Users\mkandyba.MPD1\source\repos\CPP_Zaawansowany\WyjatkiZad2\PositiveNumber.cpp(191): warning C4172: returning address of local variable or temporary: tmp
+C:\Users\mkandyba.MPD1\source\repos\CPP_Zaawansowany\WyjatkiZad2\PositiveNumber.cpp(198): warning C4172: returning address of local variable or temporary: tmp
+C:\Users\mkandyba.MPD1\source\repos\CPP_Zaawansowany\WyjatkiZad2\PositiveNumber.cpp(177): warning C4172: returning address of local variable or temporary: tmp
   WyjatkiZad2.vcxproj -> C:\Users\mkandyba.MPD1\source\repos\CPP_Zaawansowany\x64\Debug\WyjatkiZad2.exe

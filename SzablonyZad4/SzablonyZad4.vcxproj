@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Zad4.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StaticTable.h" />

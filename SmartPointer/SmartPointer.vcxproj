@@ -142,7 +142,9 @@
     <ClCompile Include="SmartPointer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SimpleSmartPointer.h" />
+    <ClInclude Include="RefCounter.hpp" />
+    <ClInclude Include="SharedSmartPointer.hpp" />
+    <ClInclude Include="SimpleSmartPointer.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

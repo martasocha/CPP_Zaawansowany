@@ -20,7 +20,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SimpleSmartPointer.h">
+    <ClInclude Include="SimpleSmartPointer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SharedSmartPointer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RefCounter.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

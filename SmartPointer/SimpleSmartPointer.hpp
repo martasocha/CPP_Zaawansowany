@@ -5,14 +5,14 @@ class SimpleSmartPointer
 {
 public:
 	SimpleSmartPointer(T* data)
-		: _data(data)
+		: _data(data) //pozyskuje zasob w konstrukrorze
 	{
 	}
 	~SimpleSmartPointer()
 	{
-		delete _data;
+		delete _data; //zwalnia zasob w konstruktorze
 	}
-	T operator*()
+	T& operator*()
 	{
 		return *_data;
 	}
