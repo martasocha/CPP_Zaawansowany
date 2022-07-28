@@ -1,27 +1,83 @@
-// Zad3.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+﻿// Za pomoc¹ std::set sprawdz czy w podanym ³añcuchu znaków wystêpuj¹ wszystkie litery alfabetu.
 
 #include <iostream>
 #include <set>
+#include <algorithm>
 
-bool contains(const std::set<std::string>& container)
+bool containsAllLetters(std::string text)
 {
-    return container.find("abcdefghijklmnoprstuwxyz") != container.end();
+    std::set<char> alphabetChecker;
+
+    for (std::string::iterator itText = text.begin(); itText != text.end(); itText++)
+    {
+        if (*itText >= 65 && *itText <= 90) //zamien duze litery na ma³e
+        {
+            *itText += 32;
+        }
+
+        if (*itText >= 97 && *itText <= 122) //wrzucamy do naszego kontenera tylo male litery
+        {
+            alphabetChecker.insert(*itText); //umieszcza w zbiorze unikalne wartosci, duplikaty sa pomijane
+        }
+    }
+
+    return alphabetChecker.size() == 26;
+}
+
+unsigned char toLowerCase(unsigned char c) 
+{
+    return std::tolower(c);
+}
+
+bool containsAllLetters2(std::string text)
+{
+    auto removeNonLetters = [](unsigned char c)
+    {
+        return !((c >= 97 && c <= 122) || (c >= 65 && c <= 90));
+    };
+
+    text.erase(std::remove_if(text.begin(), text.end(), removeNonLetters),text.end()); //erase remove idiom
+    //std::transform(text.begin(), text.end(), text.begin(), toLowerCase); //to samo co nizej, ale bez uzycia lambdy
+
+    //funckja transform dla kazdego elementu z zakresu (text.begin -> text.end) wywo³a przekazan¹ unary operation
+    //a nastêpnie przechowa wynik w text.begin()
+    std::transform(text.begin(), text.end(), text.begin(), //zamiana na ma³e litery 
+        [](unsigned char c) { return std::tolower(c); });
+
+    std::set<char> alphabetChecker;
+
+    std::for_each(text.begin(), text.end(),  //dla kazdego elementu wywo³aj lambdê
+        [&alphabetChecker](unsigned char c) { alphabetChecker.insert(c); });
+
+    return alphabetChecker.size() == 26;
+}
+
+bool containsAllLetters3(const std::string& text)
+{
+    std::set<char> alphabetChecker;
+
+    auto fillSetWithOnlyLetters = [&alphabetChecker](unsigned char c)
+    {
+        if ((c >= 97 && c <= 122) || (c >= 65 && c <= 90))
+        {
+            if (c >= 65 && c <= 90)
+            {
+                c = std::tolower(c);
+            }
+            alphabetChecker.insert(c);
+        }
+        return alphabetChecker;
+    };
+
+    std::for_each(text.begin(), text.end(), fillSetWithOnlyLetters);
+
+    return alphabetChecker.size() == 26;
 }
 
 int main()
 {
-    //std::set<std::string> alphabet1 = { "abcdefghijklmnoprstuwxyz"};
-    std::set<std::string> alphabet = {"abcefghijkuwxyz"};
-
-    if (contains(alphabet))
-    {
-        std::cout << "W podanym lancuchu znakow wystepuja wszystkie litery alfabetu" << std::endl;
-    }
-    else
-    {
-        std::cout << "W podanym lancuchu znakow nie wystepuja wszystkie litery alfabetu" << std::endl;
-    }
+    std::string text = "abcdefghijklmnopqrstuvxyz";
+    std::cout << containsAllLetters3(text);
 
 }
 
