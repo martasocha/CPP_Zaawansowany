@@ -78,9 +78,7 @@ int main()
     std::cout << std::endl << std::endl;
 
     auto it = find(vect.begin(), vect.end(), 78);
-    //auto it = vect.begin() + 177;
     auto itEnd = find(vect.begin(), vect.end(), 78) + 10;
-    //auto itEnd = vect.begin() + 187;
 
     std::copy(it, itEnd, std::back_inserter(thirdVect));
     for (int n : thirdVect)

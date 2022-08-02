@@ -60,7 +60,7 @@ int main()
 	}
 	else
 	{
-		std::cout << "Nie mogê otworzyæ pliku :(";
+		std::cout << "Nie mogê otworzyæ pliku";
 		return -1;
 	}
 	std::vector<int> vect;
