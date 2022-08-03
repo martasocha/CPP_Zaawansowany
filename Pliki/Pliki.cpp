@@ -39,6 +39,7 @@ int main()
 			if (fileToWrite.good())
 			{
 				fileToWrite << numbers[i] << "\n";
+				//fileToWrite << intDistribution(defaultEngine);
 			}
 		}
 		fileToWrite.close();

@@ -11,7 +11,7 @@ int main() {
 
 	std::vector<int> numbers;
 	std::random_device r;
-	std::default_random_engine defEngine(r()); // zasianie ziarna losowosci za pomoca r
+	std::default_random_engine defEngine(r()); // zasianie ziarna losowosci za pomoca r, odpowiada za faktyczne wtgenerowanie liczb losowych
 	std::uniform_int_distribution<int> intDistro(0, 10);
 	for (int i = 1; i <= 100; i++) {
 		numbers.push_back(intDistro(defEngine));
