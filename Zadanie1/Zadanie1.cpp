@@ -18,30 +18,29 @@ int main()
     do
     {
         std::cout << "Podaj nazwe produktu: ";
-        std::getline(std::cin, s, ';'); // wczytuje az do napotkania znaku nowej linii
+        std::string s = {};
+        std::cin.ignore();
+        std::getline(std::cin, s); // wczytuje az do napotkania znaku nowej linii
 
-        int it = s.find_first_of(' ');
-        for (int i = 0; i < it; ++i)
+        for (int i = 0; i < s.length(); ++i)
         {
             s[i] = std::tolower(s[i]);
             product += s[i];
         }
-        for (int i = it+1; i < s.length(); ++i)
-        {
-            amountOfProduct += s[i];
-        }
-        amount = std::atoi(amountOfProduct.c_str());
+        int amount = 0;
+        std::cout << "Podaj ilosc produktu: ";
+        std::cin >> amount;
 
         shoppingList.insert({ product, amount });
-
-    } while (s != "end;");
+        
+    } while (product != "end" && amount == 0);
 
     std::cout << "Koniec" << std::endl;
 
-    for (auto el : shoppingList)
-    {
-        std::cout << product << " " << amount << std::endl;
-    }
+    //for (auto el : shoppingList)
+    //{
+    //    std::cout << product << " " << amount << std::endl;
+    //}
 
     //mapa, iterator na koniec jelsi nie znajdzie i wtedy kolejny
 }
