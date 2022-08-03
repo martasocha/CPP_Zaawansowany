@@ -33,7 +33,7 @@ int main()
 
         shoppingList.insert({ product, amount });
         
-    } while (product != "end" && amount == 0);
+    } while (product != "end");
 
     std::cout << "Koniec" << std::endl;
 
