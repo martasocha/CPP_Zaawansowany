@@ -18,28 +18,68 @@ int main()
     do
     {
         std::cout << "Podaj nazwe produktu: ";
-        std::string s = {};
-        std::cin.ignore();
         std::getline(std::cin, s); // wczytuje az do napotkania znaku nowej linii
 
-        for (int i = 0; i < s.length(); ++i)
+        int it = s.find_last_of(' ');
+        
+        for (int i = 0; i < it; ++i)
         {
             s[i] = std::tolower(s[i]);
             product += s[i];
         }
-        int amount = 0;
-        std::cout << "Podaj ilosc produktu: ";
-        std::cin >> amount;
 
-        shoppingList.insert({ product, amount });
-        
-    } while (product != "end");
+        for (int i = it+1; i < s.length(); ++i)
+        {
+            amountOfProduct += s[i];
+        }
+        amount = std::atoi(amountOfProduct.c_str());
 
-    std::cout << "Koniec" << std::endl;
+
+        if (shoppingList.find(product) != shoppingList.end() && s != "end")
+        {
+
+            std::cout << "Juz podales ten produkt:" << s << "! Co chcesz zrobic?\n";
+            std::cout << "Wpisz 1 jeœli chcesz nadpisac" << std::endl;
+            std::cout << "Wpisz 2 jeœli chcesz zsumowac (sumujemy obie wartoœci)" << std::endl;
+            std::cout << "Wpisz 3 jeœli chcesz pominac (zostawiamy pierwsz¹ wartoœæ)" << std::endl;
+            int choice;
+            std::cin >> choice;
+
+
+            std::map<std::string, int>::iterator it = shoppingList.find(product);
+            
+
+            switch (choice)
+            {
+            case 1:
+                it->second = amount;
+                shoppingList.insert({ product, amount });
+                break;
+            case 2:
+                it->second = it->second + amount;
+                shoppingList.insert({ product, amount });
+                break;
+            case 3:
+                break;
+
+            }
+            choice = 0;
+
+        }
+        else
+        {
+            shoppingList.insert({ product, amount });
+        }
+        product = {};
+        amountOfProduct = {};
+        amount = 0;
+    } while (s != "end");
+
+    //std::cout << "Koniec" << std::endl;
 
     //for (auto el : shoppingList)
     //{
-    //    std::cout << product << " " << amount << std::endl;
+    //   std::cout << product << " " << amount << std::endl;
     //}
 
     //mapa, iterator na koniec jelsi nie znajdzie i wtedy kolejny
