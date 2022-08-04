@@ -82,17 +82,9 @@ int main()
 
     if (fileToWrite.is_open())
     {
-        //for (int i = 0; i <= shoppingList.size(); ++i)
-        //{
-        //    if (fileToWrite.good())
-        //    {
-        //        fileToWrite << shoppingList.first << " " << amount;
-
-        //    }
-        //}
 
         for (auto& kv : shoppingList) {
-            fileToWrite << kv.first << kv.second << '\n';
+            fileToWrite << kv.first << " " << kv.second << '\n';
         }
         fileToWrite.close();
     }
@@ -102,12 +94,6 @@ int main()
         return -1;
     }
 
-    //std::cout << "Koniec" << std::endl;
-
-    //for (auto el : shoppingList)
-    //{
-    //   std::cout << product << " " << amount << std::endl;
-    //}
 
     //mapa, iterator na koniec jelsi nie znajdzie i wtedy kolejny
 }
