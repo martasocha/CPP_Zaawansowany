@@ -5,6 +5,7 @@
 #include <string>
 #include <cstdlib>
 #include <map>
+#include <fstream>
 
 int main()
 {
@@ -39,9 +40,9 @@ int main()
         {
 
             std::cout << "Juz podales ten produkt:" << s << "! Co chcesz zrobic?\n";
-            std::cout << "Wpisz 1 jeœli chcesz nadpisac" << std::endl;
-            std::cout << "Wpisz 2 jeœli chcesz zsumowac (sumujemy obie wartoœci)" << std::endl;
-            std::cout << "Wpisz 3 jeœli chcesz pominac (zostawiamy pierwsz¹ wartoœæ)" << std::endl;
+            std::cout << "Wpisz 1 jesli chcesz nadpisac" << std::endl;
+            std::cout << "Wpisz 2 jesli chcesz zsumowac (sumujemy obie wartosci)" << std::endl;
+            std::cout << "Wpisz 3 jesli chcesz pominac (zostawiamy pierwsza wartosc)" << std::endl;
             int choice;
             std::cin >> choice;
 
@@ -74,6 +75,32 @@ int main()
         amountOfProduct = {};
         amount = 0;
     } while (s != "end");
+
+
+    std::string fileName("C:\\Users\\mkandyba.MPD1\\source\\repos\\CPP_Zaawansowany\\Zadanie1\\ShoppingList.txt");
+    std::ofstream fileToWrite(fileName, std::ios::out | std::ios::trunc);
+
+    if (fileToWrite.is_open())
+    {
+        //for (int i = 0; i <= shoppingList.size(); ++i)
+        //{
+        //    if (fileToWrite.good())
+        //    {
+        //        fileToWrite << shoppingList.first << " " << amount;
+
+        //    }
+        //}
+
+        for (auto& kv : shoppingList) {
+            fileToWrite << kv.first << kv.second << '\n';
+        }
+        fileToWrite.close();
+    }
+    else
+    {
+        std::cout << "Nie moge otworzyc pliku do zapisu";
+        return -1;
+    }
 
     //std::cout << "Koniec" << std::endl;
 
