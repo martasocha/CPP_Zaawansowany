@@ -1,26 +1,66 @@
+// Zadanie2.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
 #include <iostream>
-#include <string>
 #include <fstream>
 #include <vector>
+#include <string>
 #include <algorithm>
-
+#include <map>
 
 int main()
 {
-    std::cout << "Podaj nazwe produktu";
-    std::string s;
-    std::getline(std::cin, s); //wczytaj az do napotkania zaku nowej lini
+    std::ifstream file("zdania.csv");
 
-    std::cout << "Wczytano: " << s;
+    if (!file.is_open())
+    {
+        std::cout << "Nie uda³o siê otworzyc pliku";
+        return 0;
+    }
+    std::string str;
+    std::vector<std::string> strings;
+    std::vector<int> vectOfSpaces;
+    //std::map<std::string, int> mapOfWords;
+    int space = 0;
+    int max = 0;
+    while (std::getline(file, str))
+    {
+        strings.push_back(str);
+        //std::cout << str << std::endl;
+        for (int i = 0; i <= str.length(); i++)
+        {
+            if (str[i] == ' ')
+            {
+                space++;
+            }
+        }
+        int words = space + 1;
+
+        vectOfSpaces.push_back(words);
+
+
+        std::sort(vectOfSpaces.begin(), vectOfSpaces.end());
+
+        //std::cout << words << std::endl;
+        if (words > max)
+        {
+            max = words;
+        }
+
+        space = 0;
+        words = 0;
+    }
+    file.close();
+
+    //auto it = std::max_element(vectOfSpaces.begin(), vectOfSpaces.end());
+    vecOfSpaces.index(max(vecOfSpaces));
+    std::cout << vectOfSpaces[it];
+    /*for (auto [str, words] : mapOfWords)
+    {
+
+    }*/
+    //std::cout << "Max wynosi: " << max << std::endl;
+
+    //std::cout << "Wczytano " << strings.size() << " ³ancuchów";
+
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

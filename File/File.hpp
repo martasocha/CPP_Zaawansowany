@@ -3,27 +3,46 @@
 
 class Employee
 {
-	std::vector<Employee> vectEmployee;
+	std::vector<Employee> vectEmployee; // wektor w mainie, kolejna klasa EmployeeList...
 public:
 	std::string _name;
 	std::string _surname;
 	int _empolyeeNumber;
 	double _salary;
+
+	int generateID;
 	//std::string _fileName;
 	Employee(std::string name, std::string surname, double salary);
 
+	template<typename T>
+	friend const File& operator<<(const File& file, T data);
+
+	template<typename T>
+	friend const File& operator>>(const File& file, T data);
 };
 
 class File
 {
 	std::vector<Employee> vectEmployee;
-	std::string _fileName;
+	std::fstream _filestream;
 public:
-	File(const std::string& fileName);
+	enum class OpenMode {
+		WRITE,
+		READ
+	};
+	File(const std::string& filePath, OpenMode openMode);
 	~File();
 
 };
 
+template<typename T>
+const File& operator<<(const File& file, T data)
+{
 
-const File& operator<<(const File& file, std::vector<Employee> vectEmployee);
-const File& operator>>(const File& file, std::vector<Employee> vectEmployee);
+}
+
+template<typename T>
+const File& operator>>(const File& file, T data)
+{
+
+}

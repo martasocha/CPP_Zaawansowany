@@ -33,7 +33,7 @@ int main()
         {
             amountOfProduct += s[i];
         }
-        amount = std::atoi(amountOfProduct.c_str());
+        amount = std::stoi(amountOfProduct);
 
 
         if (shoppingList.find(product) != shoppingList.end() && s != "end")

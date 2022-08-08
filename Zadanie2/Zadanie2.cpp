@@ -7,6 +7,18 @@
 #include <string>
 #include <algorithm>
 #include <map>
+#include <set>
+
+
+// The comparison function for sorting the set by increasing order of its pair's
+// second value. If the second value is equal, order by the pair's first value
+
+struct compareByVal {
+    bool operator()(std::pair<std::string, int>& a, std::pair<std::string, int>& b)
+    {
+        return a.second < b.second;
+    }
+};
 
 int main()
 {
@@ -20,12 +32,14 @@ int main()
     std::string str;
     std::vector<std::string> strings;
     std::vector<int> vectOfSpaces;
-    //std::map<std::string, int> mapOfWords;
+    std::map<std::string, int> mapOfWords;
+    // create an empty vector of pairs
+
     int space = 0;
     int max = 0;
     while (std::getline(file, str))
     {
-        strings.push_back(str);
+        //strings.push_back(str);
         //std::cout << str << std::endl;
         for (int i = 0; i <= str.length(); i++)
         {
@@ -39,22 +53,37 @@ int main()
         vectOfSpaces.push_back(words);
 
        
-        std::sort(vectOfSpaces.begin(), vectOfSpaces.end());
+        //std::sort(vectOfSpaces.begin(), vectOfSpaces.end());
+        mapOfWords.insert({ str, words });
 
         //std::cout << words << std::endl;
-        if (words > max)
-        {
-            max = words;
-        }
-        
+        //if (words > max)
+        //{
+        //    max = words;
+        //}
+        //auto it = std::max_element(vectOfSpaces.begin(), vectOfSpaces.end());
+
         space = 0;
         words = 0;
     }
     file.close();
 
-    //auto it = std::max_element(vectOfSpaces.begin(), vectOfSpaces.end());
-    vecOfSpaces.index(max(vecOfSpaces));
-    std::cout << vectOfSpaces[it];
+    // print the vector
+    //for (auto const& pair : vec) {
+    //    std::cout << '{' << pair.first << "," << pair.second << '}' << std::endl;
+    //}
+
+    // create an empty vector of pairs
+    //std::set<std::pair<std::string, int>, comp> set(mapOfWords.begin(), mapOfWords.end());
+
+    std::map<std::string, int, compareByVal> mapOfWords;
+
+    std::cout << mapOfWords.begin()->first << std::endl;
+
+    //for (auto it = mapOfWords.cbegin(); it != mapOfWords.cend(); ++it)
+    //{
+    //    std::cout << it->first << " " << " " << it->second << "\n";
+    //}
     /*for (auto [str, words] : mapOfWords)
     {
 

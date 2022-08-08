@@ -23,33 +23,27 @@ Employee::Employee(std::string name, std::string surname, double salary):
 	this->_empolyeeNumber = employeeNumber;
 }
 
-File::File(const std::string& fileName):
-	_fileName(fileName)
+File::File(const std::string& filePath, OpenMode openMode) :
 {
 
-	//std::string _fileName("C:\\Users\\mkandyba.MPD1\\source\\repos\\CPP_Zaawansowany\\Pliki\\Workers.txt");
-	std::ofstream fileToWrite(_fileName, std::ios::out | std::ios::trunc);
-
-	if (fileToWrite.is_open())
+	if (openMode == OpenMode::READ)
 	{
-		for (int i = 0; i < 10; ++i)
-		{
-			fileToWrite << vectEmployee[i]._name << vectEmployee[i]._surname << vectEmployee[i]._empolyeeNumber << vectEmployee[i]._salary << "\n";
-			i++;
-		}
+		_filestream = std::fstream(filePath, std::ios::in); //_filestream uchwyt do pliku
+	}
+	else if (openMode == OpenMode::WRITE)
+	{
+		_filestream = std::fstream(filePath, std::ios::in);
 	}
 	else
 	{
-		std::cout << "Nie mogê otworzyæ pliku do zapisu";
-	}
-	fileToWrite.close();
-}
 
+	}
+}
 
 File::~File()
 {
 	
-	//_fileName.close();
+	_filestream.close();
 }
 
 const File& operator<<(const File& file, std::vector<Employee> vectEmployee)
