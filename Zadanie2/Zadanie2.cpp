@@ -6,19 +6,18 @@
 #include <vector>
 #include <string>
 #include <algorithm>
-#include <map>
-#include <set>
 
 
-// The comparison function for sorting the set by increasing order of its pair's
-// second value. If the second value is equal, order by the pair's first value
+int removeSpacesAndCountSize(std::string text)
+{
+    auto noSpaceEnd = std::remove(text.begin(), text.end(), ' ');
+    text.erase(noSpaceEnd, text.end());
 
-struct compareByVal {
-    bool operator()(std::pair<std::string, int>& a, std::pair<std::string, int>& b)
-    {
-        return a.second < b.second;
-    }
-};
+    int size;
+    size = text.size();
+    return size;
+}
+
 
 int main()
 {
@@ -31,76 +30,74 @@ int main()
     }
     std::string str;
     std::vector<std::string> strings;
-    std::vector<int> vectOfSpaces;
-    std::map<std::string, int> mapOfWords;
-    // create an empty vector of pairs
+    std::vector<int> numberOfWords;
 
     int space = 0;
     int max = 0;
     while (std::getline(file, str))
     {
-        //strings.push_back(str);
-        //std::cout << str << std::endl;
+        strings.push_back(str);
         for (int i = 0; i <= str.length(); i++)
         {
-            if (str[i] == ' ') 
+            if (str[i] == ' ')
             {
                 space++;
             }
         }
-        int words = space +1;
-        
-        vectOfSpaces.push_back(words);
+        int words = space + 1;
 
-       
-        //std::sort(vectOfSpaces.begin(), vectOfSpaces.end());
-        mapOfWords.insert({ str, words });
-
-        //std::cout << words << std::endl;
-        //if (words > max)
-        //{
-        //    max = words;
-        //}
-        //auto it = std::max_element(vectOfSpaces.begin(), vectOfSpaces.end());
+        numberOfWords.push_back(words);
 
         space = 0;
         words = 0;
     }
     file.close();
 
-    // print the vector
-    //for (auto const& pair : vec) {
-    //    std::cout << '{' << pair.first << "," << pair.second << '}' << std::endl;
-    //}
+    // Wypisz na konsolê: najd³u¿sze zdanie(najwiêcej s³ów)
 
-    // create an empty vector of pairs
-    //std::set<std::pair<std::string, int>, comp> set(mapOfWords.begin(), mapOfWords.end());
+    auto result = std::max_element(numberOfWords.begin(), numberOfWords.end());
+    int maxElement = std::distance(numberOfWords.begin(), result);
 
-    std::map<std::string, int, compareByVal> mapOfWords;
+    std::cout << "Najdluzsze zdanie (najwiecej slow) to: " << strings.at(maxElement);
 
-    std::cout << mapOfWords.begin()->first << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
 
-    //for (auto it = mapOfWords.cbegin(); it != mapOfWords.cend(); ++it)
-    //{
-    //    std::cout << it->first << " " << " " << it->second << "\n";
-    //}
-    /*for (auto [str, words] : mapOfWords)
+    // Wypisz na konsolê: najkrotsze zdanie (najmniej s³ów)
+
+    auto result2 = std::min_element(numberOfWords.begin(), numberOfWords.end());
+    int minElement = std::distance(numberOfWords.begin(), result2);
+
+    std::cout << "najkrotsze zdanie (najmniej slow) to: " << strings.at(minElement);
+
+    std::cout << std::endl;
+    std::cout << std::endl;
+
+    // Wypisz na konsolê: najd³u¿sze zdanie(najwiêcej liter)
+
+    std::vector<int> numberOfLetters;
+    for (int i = 0; i < strings.size(); ++i)
     {
+        int size = removeSpacesAndCountSize(strings.at(i));
+        numberOfLetters.push_back(size);
+    }
 
-    }*/
-    //std::cout << "Max wynosi: " << max << std::endl;
+    auto result3 = std::max_element(numberOfLetters.begin(), numberOfLetters.end());
+    int maxElement2 = std::distance(numberOfLetters.begin(), result3);
 
-    //std::cout << "Wczytano " << strings.size() << " ³ancuchów";
+    std::cout << "Najdluzsze zdanie (najwiecej liter) to: " << strings.at(maxElement2) << " , zawiera: " << numberOfLetters.at(maxElement2) << " liter";
+
+    std::cout << std::endl;
+    std::cout << std::endl;
+
+    //// Wypisz na konsolê: najkrotsze zdanie(najmniej liter)
+
+
+    auto result4 = std::min_element(numberOfLetters.begin(), numberOfLetters.end());
+    int minElement2 = std::distance(numberOfLetters.begin(), result4);
+
+    std::cout << "najkrotsze zdanie (najmniej slow) to: " << strings.at(minElement2) << " , zawiera: " << numberOfLetters.at(minElement2) << " liter";
+
+    std::cout << std::endl;
 
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

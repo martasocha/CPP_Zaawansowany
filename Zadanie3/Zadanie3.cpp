@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <regex>
 
 class User
 {
@@ -13,8 +14,16 @@ public:
     User(std::string login, std::string password)
         : _login(login), _password(password)
     {
-
     }
+    std::string getPassword()
+    {
+        return _password;
+    }
+    std::string getLogin()
+    {
+        return _login;
+    }
+
 private:
     std::string _login;
     std::string _password;
@@ -29,6 +38,7 @@ int main()
         std::cout << "Nie uda³o siê otworzyc pliku";
         return 0;
     }
+
     std::vector<User> users;
 
 
@@ -36,7 +46,7 @@ int main()
     std::string login;
     std::string password;
     std::string str;
-    std::getline(file, str); //zjezenie naglowka
+    std::getline(file, str); //zjedzenie naglowka
 
     while (std::getline(file, login, ',')) //pilnuje zeby dojsc do konca strumienia i nie wczytac nic
     {
@@ -46,31 +56,36 @@ int main()
     }
     file.close();
 
-    std::vector<Users> badPassword;
-    auto checkPassword = [](const User& user)
+    std::vector<User> badPassword;
+
+    auto checkPassword = [](User& user)
     {
-        std::regex_march
-        return user.password.size() < 8;
-    }
+        std::regex passwordRegex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$");
+        std::regex_match(user.getPassword(), passwordRegex);
+        return user.getPassword().size() < 8;
+    };
+
     std::copy_if(users.begin(), users.end(), std::back_inserter(badPassword), checkPassword);
 
-    //while (file.good() && !file.eof())
-    //{
-    //    std::getline(file, login, ',');
-    //    std::getline(file, password);
 
-    //    users.emplace_back(login, password);
-    //}
+    std::string fileName("wrongPassword.txt");
+    std::ofstream fileToWrite(fileName, std::ios::out | std::ios::trunc);
+
+    if (fileToWrite.is_open())
+    {
+        for (unsigned int i = 0; i < badPassword.size(); ++i)
+        {
+            if (fileToWrite.good())
+            {
+                fileToWrite << badPassword[i].getLogin() << "," << badPassword[i].getPassword() << "\n";
+            }
+        }
+        fileToWrite.close();
+    }
+    else
+    {
+        std::cout << "Nie moge otworzyc pliku do zapisu";
+        return -1;
+    }
 
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

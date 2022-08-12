@@ -81,8 +81,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Multithreading", "Multithre
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AlgorytmyZad1", "AlgorytmyZad1\AlgorytmyZad1.vcxproj", "{93C72716-ACB1-45F1-B020-0D8222188B88}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZadanieFile.cpp", "ZadanieFile.cpp\ZadanieFile.cpp.vcxproj", "{961039C3-12B6-4F2B-91F6-83E488D20FCE}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RemoveCopyIf", "RemoveCopyIf\RemoveCopyIf.vcxproj", "{79858887-2E43-45E5-B398-D042A03C8A49}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Palindrom", "Palindrom\Palindrom.vcxproj", "{DCB98B74-C9ED-452B-A2BA-3FDA5D98C5DD}"
@@ -407,14 +405,6 @@ Global
 		{93C72716-ACB1-45F1-B020-0D8222188B88}.Release|x64.Build.0 = Release|x64
 		{93C72716-ACB1-45F1-B020-0D8222188B88}.Release|x86.ActiveCfg = Release|Win32
 		{93C72716-ACB1-45F1-B020-0D8222188B88}.Release|x86.Build.0 = Release|Win32
-		{961039C3-12B6-4F2B-91F6-83E488D20FCE}.Debug|x64.ActiveCfg = Debug|x64
-		{961039C3-12B6-4F2B-91F6-83E488D20FCE}.Debug|x64.Build.0 = Debug|x64
-		{961039C3-12B6-4F2B-91F6-83E488D20FCE}.Debug|x86.ActiveCfg = Debug|Win32
-		{961039C3-12B6-4F2B-91F6-83E488D20FCE}.Debug|x86.Build.0 = Debug|Win32
-		{961039C3-12B6-4F2B-91F6-83E488D20FCE}.Release|x64.ActiveCfg = Release|x64
-		{961039C3-12B6-4F2B-91F6-83E488D20FCE}.Release|x64.Build.0 = Release|x64
-		{961039C3-12B6-4F2B-91F6-83E488D20FCE}.Release|x86.ActiveCfg = Release|Win32
-		{961039C3-12B6-4F2B-91F6-83E488D20FCE}.Release|x86.Build.0 = Release|Win32
 		{79858887-2E43-45E5-B398-D042A03C8A49}.Debug|x64.ActiveCfg = Debug|x64
 		{79858887-2E43-45E5-B398-D042A03C8A49}.Debug|x64.Build.0 = Debug|x64
 		{79858887-2E43-45E5-B398-D042A03C8A49}.Debug|x86.ActiveCfg = Debug|Win32

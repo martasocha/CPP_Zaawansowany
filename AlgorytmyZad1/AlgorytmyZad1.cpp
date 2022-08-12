@@ -50,7 +50,7 @@ std::vector<char> findCommonLetters(std::string str1, std::string str2)
     return vect;
 }
 
-std::string removeSpaces(std::string text)
+std::string removeSpacesAndCountSize(std::string text)
 {
     auto noSpaceEnd = std::remove(text.begin(), text.end(), ' ');
     text.erase(noSpaceEnd, text.end());
@@ -77,7 +77,7 @@ int countHowManyLetters(std::string text, char letter)
 
 bool isStringAPalindrome(std::string text)
 {
-    std::string changedText = removeSpaces(changeUppercaseToLowercase(text));
+    std::string changedText = removeSpacesAndCountSize(changeUppercaseToLowercase(text));
     std::string temp = changedText;
     std::reverse(changedText.begin(), changedText.end());
     
@@ -259,7 +259,7 @@ int main()
     //Zad 4
 
     std::string newText = "Ala ma kota, a kot ma Ale";
-    std::string textWithoutSpaces = removeSpaces(newText);
+    std::string textWithoutSpaces = removeSpacesAndCountSize(newText);
     for (char& n : textWithoutSpaces)
     {
         std::cout << n;
